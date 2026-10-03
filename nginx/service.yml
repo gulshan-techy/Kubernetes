@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+
+metadata:
+  name: nginx-service
+  namespace: nginx-ns
+
+spec:
+  selector:
+    app: nginx-lb
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+
+  # kubectl port-forward svc/nginx-service   -n nginx-ns   8000:80   --address=0.0.0.0      ( for port forwarding, so that user can access our website from internet <ip>:8000 ) 
