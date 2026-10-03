@@ -1,13 +1,5 @@
-kind: Pod
+kind: Namespace
 apiVersion: v1
 
 metadata:
-  name: nginx-pod
-  namespace: nginx-ns
-
-spec:
-  containers:
-  - name: nginx-cont
-    image: nginx:latest
-    ports:
-    - containerPort: 80
+  name: nginx-ns
