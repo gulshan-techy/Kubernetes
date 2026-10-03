@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+
+metadata:
+  name: shop-app-svc
+  namespace: shop-app-ns
+
+spec:
+  selector:
+    app: shop-app-lb
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP
+
+  # kubectl port-forward svc/shop-app-svc   -n shop-app-ns   9000:80   --address=0.0.0.0
