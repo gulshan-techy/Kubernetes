@@ -1,0 +1,40 @@
+kind: Deployment
+apiVersion: apps/v1
+
+metadata:
+  name: mysql-dep
+  namespace: mysql-ns
+  labels:
+    app: mysql-lb
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mysql-lb
+  template:
+    metadata:
+      labels:
+        app: mysql-lb
+    spec:
+      containers:
+      - name: mysql-pod
+        image: mysql:latest
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secrets
+              key: user
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secrets
+              key: password
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secrets
+              key: rootpassword
