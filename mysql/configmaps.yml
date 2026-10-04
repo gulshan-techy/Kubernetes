@@ -1,0 +1,4 @@
+kind: Configmaps
+apiVersion: v1
+
+metadata:
