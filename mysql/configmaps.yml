@@ -2,3 +2,8 @@ kind: Configmaps
 apiVersion: v1
 
 metadata:
+  name: myconfigs
+  namespace: mysql-ns
+
+data:
+  db: mydb
