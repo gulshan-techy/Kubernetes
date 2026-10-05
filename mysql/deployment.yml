@@ -43,3 +43,41 @@ spec:
             configMapKeyRef:
               name: myconfigs
               key: db
+
+---
+
+kind: PersistentVolume
+apiVersion: v1
+
+metadata:
+  name: mysql-pv
+
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 1Gi
+
+  accessModes:
+  - ReadWriteOnce
+
+  hostPath:
+    path: /mnt/data
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+
+metadata:
+  name: mysql-pvc
+  namespace: mysql-ns
+
+spec:
+  storageClassName: standard
+  accessMode:
+  - ReadWriteOnce
+
+  resource:
+    request:
+      storage: 1Gi
+  
