@@ -38,3 +38,8 @@ spec:
             secretKeyRef:
               name: mysql-secrets
               key: rootpassword
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: myconfigs
+              key: db
